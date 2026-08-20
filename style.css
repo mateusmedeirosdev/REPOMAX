@@ -229,7 +229,7 @@ body {
  
 .carrossel {
     display: flex;
-    flex-direction: row-reverse; /* inverte a ordem visual, permitindo o movimento inverso */
+    flex-direction: row;
     width: 100%;
     height: 100%;
     transition: transform 0.6s ease;
@@ -242,7 +242,7 @@ body {
     height: 100%;
 }
  
-.slide img {
+.slide > img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -258,13 +258,39 @@ body {
     color: #fff;
     max-width: 480px;
 }
+
+.slide-text-2 {
+    left: auto;
+    left: 50%;
+    right: auto;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    width: min(90%, 1000px);
+    max-width: none;
+}
+
+.slide-map {
+    height: clamp(220px, 24vw, 360px);
+    width: auto;
+    flex-shrink: 0;
+}
+
+.slide-text-2-content {
+    text-align: left;
+    min-width: 0;
+}
  
 .slide-logo {
-    height: clamp(20px, 2.2vw, 32px);
+    height: clamp(72px, 6vw, 112px);
     width: auto;
     display: block;
-    margin-bottom: 16px;
-    margin-left: -20px; /* ajuste esse valor até alinhar visualmente */
+    margin-bottom: 20px;
+    margin-left: clamp(-32px, -1.5vw, -12px);
+    filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.45));
 }
  
 .slide-text h1 {
@@ -574,3 +600,272 @@ body {
     }
 }
  
+.slide-kicker {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: clamp(13px, 1.3vw, 18px);
+    text-transform: uppercase;
+    color: #ffc107;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+}
+
+.slide-title-alt {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: clamp(22px, 3.4vw, 46px);
+    line-height: 1.15;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.slide-btn {
+    display: inline-block;
+    border: 2px solid #fff;
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: clamp(12px, 1vw, 14px);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    transition: 0.3s;
+}
+
+.slide-btn:hover {
+    background-color: #fff;
+    color: #010F22;
+}
+
+@media (max-width: 768px) {
+    .slide-text-2 {
+        left: 50%;
+        right: auto;
+        width: 90%;
+        gap: 14px;
+    }
+
+    .slide-map {
+        height: clamp(120px, 18vw, 190px);
+    }
+}
+
+@media (max-width: 480px) {
+    .slide-text-2 {
+        flex-direction: column;
+        align-items: flex-start;
+        right: auto;
+        left: 5%;
+        max-width: 90%;
+    }
+
+    .slide-map {
+        height: 70px;
+    }
+    } 
+    
+/* ===== Página de Produtos ===== */
+ 
+.pagina-produtos {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 50px 20px 80px;
+}
+ 
+.produtos-topo {
+    text-align: center;
+    margin-bottom: 40px;
+}
+ 
+.produtos-topo h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: clamp(28px, 3.5vw, 42px);
+    color: #010F22;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+ 
+.produtos-topo p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    color: #666;
+    margin-bottom: 30px;
+}
+ 
+/* Barra de busca */
+ 
+.busca-container {
+    display: flex;
+    max-width: 500px;
+    margin: 0 auto 24px;
+    border: 2px solid #010F22;
+    border-radius: 30px;
+    overflow: hidden;
+}
+ 
+.campo-busca {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 14px 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    color: #010F22;
+}
+ 
+.campo-busca::placeholder {
+    color: #999;
+}
+ 
+.botao-busca {
+    background-color: #010F22;
+    color: #fff;
+    border: none;
+    padding: 0 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+ 
+.botao-busca:hover {
+    background-color: #ffc107;
+    color: #010F22;
+}
+ 
+/* Filtro de categorias */
+ 
+.filtro-categorias {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+ 
+.filtro-btn {
+    background: none;
+    border: 2px solid #d5d5d5;
+    color: #555;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    padding: 10px 22px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.25s;
+}
+ 
+.filtro-btn:hover {
+    border-color: #010F22;
+    color: #010F22;
+}
+ 
+.filtro-btn.ativo {
+    background-color: #010F22;
+    border-color: #010F22;
+    color: #fff;
+}
+ 
+/* Grid de produtos (5 colunas x 4 linhas) */
+ 
+.produtos-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 24px;
+}
+ 
+.produto-card {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+ 
+.produto-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+ 
+.produto-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    display: block;
+    background-color: #f2f2f2;
+}
+ 
+.produto-info {
+    padding: 14px 16px 18px;
+}
+ 
+.produto-categoria-tag {
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: #ffc107;
+    margin-bottom: 6px;
+}
+ 
+.produto-info h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #010F22;
+    line-height: 1.3;
+    margin-bottom: 6px;
+}
+ 
+.produto-codigo {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    color: #999;
+}
+ 
+.produtos-vazio {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    color: #888;
+    padding: 40px 0;
+}
+ 
+/* Responsivo da página de Produtos */
+ 
+@media (max-width: 1100px) {
+    .produtos-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+ 
+@media (max-width: 860px) {
+    .produtos-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+ 
+@media (max-width: 600px) {
+    .produtos-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+ 
+    .busca-container {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
+ 
+@media (max-width: 400px) {
+    .produtos-grid {
+        grid-template-columns: 1fr;
+    }
+}
