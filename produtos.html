@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>REPOMAX - Produtos</title>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
  
 <body>
@@ -23,38 +24,39 @@
                 <a href="index.html">INÍCIO</a>
                 <a href="produtos.html">PRODUTOS</a>
 
+                <a href="#">CATÁLOGO</a>
+
                 <div class="dropdown">
-                    <a href="#">CATÁLOGO</a>
+                    <a href="#">LINHAS</a>
                     <div class="dropdown-menu">
-                        <a href="#" class="dropdown-item vans"><span>Vans</span></a>
-                        <a href="#" class="dropdown-item pickups"><span>Pick-ups</span></a>
-                        <a href="#" class="dropdown-item linha-leve"><span>Linha Leve</span></a>
+                        <a href="produtos.html?categoria=vans#produtos" class="dropdown-item vans"><span>Vans</span></a>
+                        <a href="produtos.html?categoria=pickups#produtos" class="dropdown-item pickups"><span>Pick-ups</span></a>
+                        <a href="produtos.html?categoria=linha-leve#produtos" class="dropdown-item linha-leve"><span>Linha Leve</span></a>
                     </div>
                 </div>
-                <a href="#">LINHAS</a>
  
-                <a href="#">CONTATO</a>
+                <a href="contato.html">CONTATO</a>
             </div>
         </nav>
     </header>
  
     <section class="categorias">
  
-    <a href="#" class="categoria vans">
+    <a href="produtos.html?categoria=vans#produtos" class="categoria vans">
         <div class="categoria-conteudo">
             <h2>VANS</h2>
             <span>CLIQUE E CONHEÇA</span>
         </div>
     </a>
  
-    <a href="#" class="categoria pickups">
+    <a href="produtos.html?categoria=pickups#produtos" class="categoria pickups">
         <div class="categoria-conteudo">
             <h2>PICK-UPS</h2>
             <span>CLIQUE E CONHEÇA</span>
         </div>
     </a>
  
-    <a href="#" class="categoria linha-leve">
+    <a href="produtos.html?categoria=linha-leve#produtos" class="categoria linha-leve">
         <div class="categoria-conteudo">
             <h2>LINHA LEVE</h2>
             <span>CLIQUE E CONHEÇA</span>
@@ -62,7 +64,7 @@
     </a>
     </section>
  
-    <main class="pagina-produtos">
+    <main class="pagina-produtos" id="produtos">
  
         <section class="produtos-topo">
             <h1>NOSSOS PRODUTOS</h1>

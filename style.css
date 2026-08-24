@@ -5,10 +5,10 @@
 }
  
 body {
-    margin-top: 80px; /* compensa o header fixo */
+    margin-top: 80px; 
 }
  
-/* ===== Header ===== */
+/* Header */
  
 #header {
     background-color: #010F22;
@@ -38,7 +38,7 @@ body {
 }
  
 .logo {
-    height: 65px; /* dimensiona pela altura, não pela largura */
+    height: 65px; 
     width: auto;
     display: block;
     transition: 0.2s;
@@ -70,7 +70,7 @@ body {
     color: #ccc;
 }
  
-/* ===== Dropdown do menu Catálogo ===== */
+/* Dropdown do menu Linhas */
  
 .dropdown {
     position: relative;
@@ -131,7 +131,7 @@ body {
 .dropdown-item.pickups { background-image: url("imagens/pickups.jpg"); }
 .dropdown-item.linha-leve { background-image: url("imagens/linha-leve.jpg"); }
  
-/* ===== Seção de categorias (cards grandes) ===== */
+/* Seção de categorias */
  
 .categorias {
     display: grid;
@@ -210,7 +210,7 @@ body {
 .pickups::after { background-image: url("imagens/pickups.jpg"); }
 .linha-leve::after { background-image: url("imagens/linha-leve.jpg"); }
  
-/* ===== Esconder categorias e mostrar no hover do CATÁLOGO ===== */
+/* Esconder categorias e mostrar no hover do CATÁLOGO */
  
 .categorias.show {
     opacity: 1;
@@ -218,7 +218,7 @@ body {
     pointer-events: auto;
 }
  
-/* ===== Hero / Banner principal (carrossel) ===== */
+/* Banner principal */
  
 .hero {
     width: 100%;
@@ -378,7 +378,7 @@ body {
     }
 }
 
-/* ===== Seção de Lançamentos ===== */
+/* Seção de Lançamentos */
  
 .lancamentos {
     background-color: #f8f9fa;
@@ -490,7 +490,7 @@ body {
     margin-bottom: 15px;
     padding: 0 15px;
 }
-/* ===== Footer ===== */
+/* Footer */
 
 .footer {
     background-color: #010F22;
@@ -667,7 +667,7 @@ body {
     }
     } 
     
-/* ===== Página de Produtos ===== */
+/* Página de Produtos */
  
 .pagina-produtos {
     max-width: 1300px;
@@ -773,7 +773,7 @@ body {
     color: #fff;
 }
  
-/* Grid de produtos (5 colunas x 4 linhas) */
+/* Grid de produtos */
  
 .produtos-grid {
     display: grid;
@@ -837,6 +837,170 @@ body {
     font-family: 'Montserrat', sans-serif;
     color: #888;
     padding: 40px 0;
+}
+
+/*  Página de Contato */
+body.pagina-contato-body { 
+    min-height: 100vh; 
+    display: flex; 
+    flex-direction: column; 
+}
+
+body.pagina-contato-body .pagina-contato { 
+    flex: 1;
+ }
+.pagina-contato { 
+    background: #f7f8fa;
+    padding: 70px 20px 90px; 
+}
+.contato-cabecalho { 
+    max-width: 760px; 
+    margin: 0 auto 46px; 
+    text-align: center;
+}
+.contato-cabecalho > span {
+     color: #ffc107; 
+     font-family: 'Montserrat', sans-serif; 
+     font-size: 13px; 
+     font-weight: 800; 
+     letter-spacing: 1.5px; 
+}
+.contato-cabecalho h1, .contato-informacoes h2, .contato-formulario-area h2 { 
+    color: #010F22; 
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 800; 
+    text-transform: uppercase; 
+}
+.contato-cabecalho h1 { 
+    font-size: clamp(30px, 4vw, 44px); 
+    margin: 10px 0 14px; 
+}
+.contato-cabecalho p, .contato-informacoes > p, .contato-formulario-area > p { 
+    color: #667085; 
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 15px; 
+    line-height: 1.7; 
+}
+.contato-conteudo { 
+    display: grid; 
+    grid-template-columns: minmax(270px, .75fr) minmax(0, 1.25fr); 
+    max-width: 1120px; 
+    margin: 0 auto; 
+    background: #fff; 
+    box-shadow: 0 12px 35px rgba(1, 15, 34, .1); 
+}
+.contato-informacoes { 
+    background: #010F22; 
+    color: #fff; 
+    padding: 48px 42px; 
+}
+.contato-informacoes h2 { 
+    color: #fff; 
+    font-size: 26px; 
+    margin-bottom: 14px; 
+}
+.contato-informacoes > p { 
+    color: #d5d9e0; 
+    margin-bottom: 36px; 
+}
+.contato-item { 
+    border-top: 1px solid rgba(255, 255, 255, .16); 
+    padding: 18px 0; 
+}
+.contato-item h3 { 
+    color: #ffc107; 
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 12px; 
+    letter-spacing: .8px; 
+    text-transform: uppercase; 
+    margin-bottom: 7px; 
+}
+.contato-item p { 
+    color: #fff; 
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 14px; 
+    line-height: 1.6; 
+}
+.contato-formulario-area { 
+    padding: 48px 52px; 
+}
+.contato-formulario-area h2 { 
+    font-size: 26px; 
+    margin-bottom: 10px; 
+}
+.contato-formulario-area > p { 
+    margin-bottom: 30px; 
+}
+.formulario-contato {
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 18px; 
+}
+.campo-formulario { 
+    display: flex; 
+    flex-direction: column;
+    gap: 8px; 
+}
+.campo-completo { 
+    grid-column: 1 / -1; 
+}
+.campo-formulario label { 
+    color: #010F22; 
+    font-family: 'Montserrat', 
+    sans-serif; 
+    font-size: 13px; 
+    font-weight: 700; 
+}
+.campo-formulario input, .campo-formulario textarea { 
+    border: 1px solid #d9dee6; 
+    border-radius: 3px; 
+    color: #010F22; 
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 14px; 
+    outline: none; 
+    padding: 13px 14px; 
+    resize: vertical; 
+    transition: border-color .2s, box-shadow .2s; 
+}
+.campo-formulario input:focus, .campo-formulario textarea:focus { 
+    border-color: #ffc107; 
+    box-shadow: 0 0 0 3px rgba(255, 193, 7, .18); 
+}
+.botao-enviar { 
+    background: #010F22; 
+    border: 2px solid #010F22; 
+    color: #fff; 
+    cursor: pointer; 
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 13px; 
+    font-weight: 700; 
+    justify-self: start; 
+    letter-spacing: .4px; 
+    padding: 14px 24px; 
+    transition: .25s; }
+.botao-enviar:hover { 
+    background: #ffc107; 
+    border-color: #ffc107; 
+    color: #010F22; 
+}
+.formulario-status { 
+    color: #238636; 
+    font-family: 'Montserrat', 
+    sans-serif; 
+    font-size: 13px; 
+    grid-column: 1 / -1; 
+    line-height: 1.5; 
+}
+
+@media (max-width: 760px) {
+    .pagina-contato { padding: 48px 16px 60px; }
+    .contato-conteudo { grid-template-columns: 1fr; }
+    .contato-informacoes, .contato-formulario-area { padding: 38px 26px; }
+}
+
+@media (max-width: 460px) {
+    .formulario-contato { grid-template-columns: 1fr; }
+    .campo-completo { grid-column: auto; }
 }
  
 /* Responsivo da página de Produtos */

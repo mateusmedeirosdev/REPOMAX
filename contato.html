@@ -3,27 +3,21 @@
 <head>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>REPOMAX</title>
+    <title>REPOMAX - Contato</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
- 
-<body>
- 
+<body class="pagina-contato-body">
     <header id="header">
         <nav>
-            <a href="index.html" class="logo-link">
-                <img class="logo" src="imagens/repomax.png" alt="Logo da REPOMAX">
-            </a>
- 
-           <div class="nav-links">
-                <a href="#">INÍCIO</a>
+            <a href="index.html" class="logo-link"><img class="logo" src="imagens/repomax.png" alt="Logo da REPOMAX"></a>
+            <div class="nav-links">
+                <a href="index.html">INÍCIO</a>
                 <a href="produtos.html">PRODUTOS</a>
                 <a href="#">CATÁLOGO</a>
-
                 <div class="dropdown">
                     <a href="#">LINHAS</a>
                     <div class="dropdown-menu">
@@ -32,111 +26,52 @@
                         <a href="produtos.html?categoria=linha-leve#produtos" class="dropdown-item linha-leve"><span>Linha Leve</span></a>
                     </div>
                 </div>
- 
-                <a href="contato.html">CONTATO</a>
+                <a href="contato.html" aria-current="page">CONTATO</a>
             </div>
         </nav>
     </header>
- 
+
     <section class="categorias">
- 
-    <a href="produtos.html?categoria=vans#produtos" class="categoria vans">
-        <div class="categoria-conteudo">
-            <h2>VANS</h2>
-            <span>CLIQUE E CONHEÇA</span>
-        </div>
-    </a>
- 
-    <a href="produtos.html?categoria=pickups#produtos" class="categoria pickups">
-        <div class="categoria-conteudo">
-            <h2>PICK-UPS</h2>
-            <span>CLIQUE E CONHEÇA</span>
-        </div>
-    </a>
- 
-    <a href="produtos.html?categoria=linha-leve#produtos" class="categoria linha-leve">
-        <div class="categoria-conteudo">
-            <h2>LINHA LEVE</h2>
-            <span>CLIQUE E CONHEÇA</span>
-        </div>
-    </a>
+        <a href="produtos.html?categoria=vans#produtos" class="categoria vans"><div class="categoria-conteudo"><h2>VANS</h2><span>CLIQUE E CONHEÇA</span></div></a>
+        <a href="produtos.html?categoria=pickups#produtos" class="categoria pickups"><div class="categoria-conteudo"><h2>PICK-UPS</h2><span>CLIQUE E CONHEÇA</span></div></a>
+        <a href="produtos.html?categoria=linha-leve#produtos" class="categoria linha-leve"><div class="categoria-conteudo"><h2>LINHA LEVE</h2><span>CLIQUE E CONHEÇA</span></div></a>
     </section>
- 
-    <main>
-        <section class="hero">
-            <div class="carrossel">
-                <div class="slide">
-                    <img src="imagens/banner1.jpg" alt="Banner 1">
-                    <div class="slide-text">
-                        <img src="imagens/repomax_sem_fundo.png" alt="REPOMAX" class="slide-logo">
-                        <p>Soluções completas em borracha e suspensão para os veículos mais vendidos do Brasil — e para o campo que move o nosso país.</p>
-                    </div>
-                </div>
 
-            <div class="slide">
-                <img src="imagens/banner2.jpg" alt="Banner 2">
-                <div class="slide-text slide-text-2">
-                    <img src="imagens/mapa.png" alt="Mapa do Brasil" class="slide-map">
-                    <div class="slide-text-2-content">
-                        <span class="slide-kicker">PEÇAS PARA VEÍCULOS PESADOS E LEVES</span>
-                        <h1 class="slide-title-alt">ENTREGA EM TODO O BRASIL!</h1>
-                        <a href="https://wa.me/5544997375725" class="slide-btn">ENCOMENDE AGORA</a>
-                    </div>
-                </div>
-            </div>
-            </div>
+    <main class="pagina-contato">
+        <div class="contato-cabecalho">
+            <span>FALE CONOSCO</span>
+            <h1>ENTRE EM CONTATO</h1>
+        </div>
 
-            <button class="hero-btn hero-btn-prev" onclick="mudarSlideHero(-1)">❮</button>
-            <button class="hero-btn hero-btn-next" onclick="mudarSlideHero(1)">❯</button>
-        </section>
-        
-        <section class="lancamentos">
-            <h2>LANÇAMENTOS</h2>
-            <div class="carrossel-lancamentos">
-                <button class="btn-prev" onclick="moverCarrossel(-1)">❮</button>
- 
-                <div class="carrossel-container">
-                    <div class="item-lancamento">
-                        <img src="imagens/lancamento1.jpg" alt="Lançamento 1">
-                        <h3>Modelo</h3>
-                        <p></p>
-                    </div>
-                    <div class="item-lancamento">
-                        <img src="imagens/lancamento2.jpg" alt="Lançamento 2">
-                        <h3>Modelo</h3>
-                        <p></p>
-                    </div>
-                    <div class="item-lancamento">
-                        <img src="imagens/lancamento3.jpg" alt="Lançamento 3">
-                        <h3>Modelo</h3>
-                        <p></p>
-                    </div>
-                    <div class="item-lancamento">
-                        <img src="imagens/lancamento5.jpg" alt="Lançamento 5">
-                        <h3>Modelo</h3>
-                        <p></p>
-                    </div>
-                    <div class="item-lancamento">
-                        <img src="imagens/lancamento6.jpg" alt="Lançamento 6">
-                        <h3>Modelo</h3>
-                        <p></p>
-                    </div>
-                    <div class="item-lancamento">
-                        <img src="imagens/lancamento7.jpg" alt="Lançamento 7">
-                        <h3>Modelo</h3>
-                        <p></p>
-                    </div>
-                    <div class="item-lancamento">
-                        <img src="imagens/lancamento8.jpg" alt="Lançamento 8">
-                        <h3>Modelo</h3>
-                        <p></p>
-                    </div>
-                </div>
- 
-                <button class="btn-next" onclick="moverCarrossel(1)">❯</button>
-            </div>
+        <section class="contato-conteudo">
+            <aside class="contato-informacoes">
+                <h2>Contato</h2>
+                <p>Nossa equipe está pronta para ajudar você! Utilize nosso canal de contato para esclarecer dúvidas, solicitar orçamentos, conhecer nossas soluções ou agendar uma visita.</p>
+                <p>Fale com a nossa equipe e encontre a melhor solução para o seu negócio.</p>
+                <div class="contato-item"><h3>Telefone</h3><p>(44) 3142-3638</p></div>
+                <div class="contato-item"><h3>WhatsApp</h3><p>(44) 9 9737-5725</p></div>
+                <div class="contato-item"><h3>E-mail</h3><p>contato@repomax.com.br</p></div>
+                <div class="contato-item"><h3>Endereço</h3><p>R. Alonso Péres Munhoz, 64 - Parque Industrial<br>Mandaguari - PR</p></div>
+                <div class="contato-item"><h3>Horário de atendimento</h3><p>Segunda a sexta, das 8h às 18h.</p></div>
+            </aside>
+
+            <section class="contato-formulario-area" aria-labelledby="titulo-formulario">
+                <h2 id="titulo-formulario">Envie sua mensagem</h2>
+                <p>Preencha os dados abaixo. Retornaremos assim que possível.</p>
+                <form class="formulario-contato" id="formulario-contato">
+                    <div class="campo-formulario campo-completo"><label for="nome">Nome</label><input id="nome" name="nome" type="text" placeholder="Seu nome" required></div>
+                    <div class="campo-formulario campo-completo"><label for="email">E-mail</label><input id="email" name="email" type="email" placeholder="seuemail@exemplo.com" required></div>
+                    <div class="campo-formulario"><label for="cnpj">CNPJ</label><input id="cnpj" name="cnpj" type="text" placeholder="00.000.000/0000-00" required></div>
+                    <div class="campo-formulario"><label for="telefone">Telefone</label><input id="telefone" name="telefone" type="tel" placeholder="(00) 00000-0000" required></div>
+                    <div class="campo-formulario campo-completo"><label for="assunto">Assunto</label><input id="assunto" name="assunto" type="text" placeholder="Como podemos ajudar?" required></div>
+                    <div class="campo-formulario campo-completo"><label for="mensagem">Mensagem</label><textarea id="mensagem" name="mensagem" rows="6" placeholder="Escreva sua mensagem" required></textarea></div>
+                    <button class="botao-enviar" type="submit">ENVIAR MENSAGEM</button>
+                    <p class="formulario-status" id="formulario-status" role="status"></p>
+                </form>
+            </section>
         </section>
     </main>
+
     <footer class="footer">
         <div class="footer-container">
 
@@ -177,15 +112,10 @@
                     </a>
                 </div>
             </div>
-
         </div>
-
         <div class="footer-bottom">
             <p>&copy; 2026 REPOMAX • Todos os direitos reservados • Feito por @priscomedeiros</p>
         </div>
     </footer>
- 
-
 </body>
 </html>
- 
