@@ -23,7 +23,6 @@ O foco da aplicação é oferecer uma navegação direta e visualmente consisten
 - Filtros para Vans, Pick-ups e Linha Leve.
 - Links de categoria que direcionam o visitante ao catálogo já filtrado.
 - Produtos carregados a partir de um arquivo JSON.
-- Exibição progressiva de produtos com o botão **Carregar mais produtos**.
 - Página de contato com formulário para solicitações e dúvidas.
 - Layout responsivo para diferentes tamanhos de tela.
 
