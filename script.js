@@ -8,16 +8,10 @@ if (dropdown && categorias) {
         clearTimeout(hideTimeout);
         categorias.classList.add('show');
     });
-
     dropdown.addEventListener('mouseleave', () => {
         hideTimeout = setTimeout(() => categorias.classList.remove('show'), 200);
     });
-
-    categorias.addEventListener('mouseenter', () => {
-        clearTimeout(hideTimeout);
-        categorias.classList.add('show');
-    });
-
+    categorias.addEventListener('mouseenter', () => clearTimeout(hideTimeout));
     categorias.addEventListener('mouseleave', () => categorias.classList.remove('show'));
 }
 
@@ -38,19 +32,18 @@ function mudarSlideHero(direcao) {
     if (!totalHeroSlides) return;
     currentSlide = (currentSlide + direcao + totalHeroSlides) % totalHeroSlides;
     irParaSlideHero(currentSlide);
-    reiniciarAutoplayHero();
+    clearInterval(autoplayHero);
+    iniciarAutoplayHero();
 }
 
-function reiniciarAutoplayHero() {
-    if (!totalHeroSlides) return;
-    clearInterval(autoplayHero);
+function iniciarAutoplayHero() {
     autoplayHero = setInterval(() => {
         currentSlide = (currentSlide + 1) % totalHeroSlides;
         irParaSlideHero(currentSlide);
     }, 10000);
 }
 
-if (totalHeroSlides) reiniciarAutoplayHero();
+if (totalHeroSlides) iniciarAutoplayHero();
 
 // ===== Carrossel de lançamentos =====
 const containerLancamentos = document.querySelector('.carrossel-container');
@@ -58,7 +51,6 @@ const itensVisiveis = 4;
 
 function moverCarrossel(direcao) {
     if (!containerLancamentos) return;
-
     const primeiroItem = containerLancamentos.querySelector('.item-lancamento');
     if (!primeiroItem) return;
 
@@ -78,39 +70,82 @@ function moverCarrossel(direcao) {
 
 if (containerLancamentos) setInterval(() => moverCarrossel(1), 5000);
 
-// ===== Pesquisa e filtro de produtos =====
+// ===== Catálogo de produtos carregado de produtos.json =====
+const produtosGrid = document.getElementById('produtos-grid');
 const filtroBotoes = document.querySelectorAll('.filtro-btn');
-const produtoCards = document.querySelectorAll('.produto-card');
 const produtosVazio = document.getElementById('produtos-vazio');
+const produtosStatus = document.getElementById('produtos-status');
 const campoBusca = document.getElementById('campo-busca');
 const botaoBusca = document.querySelector('.botao-busca');
+const botaoCarregarMais = document.getElementById('botao-carregar-mais');
+const tamanhoLote = 10;
+const categoriasValidas = ['todos', 'vans', 'pickups', 'linha-leve'];
+const nomesCategorias = { vans: 'Vans', pickups: 'Pick-ups', 'linha-leve': 'Linha Leve' };
+let produtos = [];
 let categoriaAtiva = 'todos';
+let quantidadeVisivel = tamanhoLote;
 
 function normalizarTexto(texto) {
-    return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+    return String(texto || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
 }
 
-function aplicarFiltros() {
-    if (!produtoCards.length) return;
-
-    const busca = normalizarTexto(campoBusca?.value.trim() || '');
-    let algumVisivel = false;
-
-    produtoCards.forEach(card => {
-        const correspondeCategoria = categoriaAtiva === 'todos' || card.dataset.categoria === categoriaAtiva;
-        const correspondeBusca = !busca || normalizarTexto(card.textContent).includes(busca);
-        const mostrar = correspondeCategoria && correspondeBusca;
-
-        card.style.display = mostrar ? 'block' : 'none';
-        if (mostrar) algumVisivel = true;
+function obterProdutosFiltrados() {
+    const busca = normalizarTexto(campoBusca?.value.trim());
+    return produtos.filter(produto => {
+        const correspondeCategoria = categoriaAtiva === 'todos' || produto.categoria === categoriaAtiva;
+        const textoProduto = normalizarTexto(`${produto.nome} ${produto.codigo}`);
+        return correspondeCategoria && (!busca || textoProduto.includes(busca));
     });
+}
 
-    if (produtosVazio) produtosVazio.style.display = algumVisivel ? 'none' : 'block';
+function criarCardProduto(produto) {
+    const card = document.createElement('article');
+    card.className = 'produto-card';
+    card.dataset.categoria = produto.categoria;
+
+    const imagem = document.createElement('img');
+    imagem.src = produto.imagem || 'imagens/produto-placeholder.jpg';
+    imagem.alt = produto.nome || 'Produto REPOMAX';
+    imagem.addEventListener('error', () => { imagem.src = 'imagens/produto-placeholder.jpg'; }, { once: true });
+
+    const info = document.createElement('div');
+    info.className = 'produto-info';
+
+    const tag = document.createElement('span');
+    tag.className = 'produto-categoria-tag';
+    tag.textContent = nomesCategorias[produto.categoria] || produto.categoria;
+
+    const nome = document.createElement('h3');
+    nome.textContent = produto.nome || 'Produto sem nome';
+
+    const codigo = document.createElement('p');
+    codigo.className = 'produto-codigo';
+    codigo.textContent = `Cód. ${produto.codigo || 'Não informado'}`;
+
+    info.append(tag, nome, codigo);
+    card.append(imagem, info);
+    return card;
+}
+
+function renderizarProdutos() {
+    if (!produtosGrid) return;
+
+    const filtrados = obterProdutosFiltrados();
+    const exibidos = filtrados.slice(0, quantidadeVisivel);
+    produtosGrid.replaceChildren(...exibidos.map(criarCardProduto));
+
+    if (produtosVazio) produtosVazio.hidden = filtrados.length > 0;
+    if (produtosStatus) {
+        produtosStatus.textContent = filtrados.length
+            ? `Exibindo ${exibidos.length} de ${filtrados.length} produto${filtrados.length === 1 ? '' : 's'}.`
+            : '';
+    }
+    if (botaoCarregarMais) botaoCarregarMais.hidden = exibidos.length >= filtrados.length;
 }
 
 function selecionarCategoria(categoria, atualizarUrl = false) {
-    const categoriasValidas = ['todos', 'vans', 'pickups', 'linha-leve'];
     categoriaAtiva = categoriasValidas.includes(categoria) ? categoria : 'todos';
+    quantidadeVisivel = tamanhoLote;
 
     filtroBotoes.forEach(botao => {
         botao.classList.toggle('ativo', botao.dataset.categoria === categoriaAtiva);
@@ -122,23 +157,48 @@ function selecionarCategoria(categoria, atualizarUrl = false) {
         else url.searchParams.set('categoria', categoriaAtiva);
         window.history.replaceState({}, '', url);
     }
+    renderizarProdutos();
+}
 
-    aplicarFiltros();
+async function carregarCatalogo() {
+    if (!produtosGrid) return;
+
+    try {
+        const resposta = await fetch('produtos.json');
+        if (!resposta.ok) throw new Error(`Erro ${resposta.status}`);
+
+        const dados = await resposta.json();
+        if (!Array.isArray(dados)) throw new Error('O catálogo deve ser uma lista de produtos.');
+
+        produtos = dados.filter(produto => categoriasValidas.includes(produto.categoria) && produto.categoria !== 'todos');
+        const categoriaDaUrl = new URLSearchParams(window.location.search).get('categoria');
+        selecionarCategoria(categoriaDaUrl || 'todos');
+    } catch (erro) {
+        console.error('Não foi possível carregar produtos.json:', erro);
+        if (produtosStatus) produtosStatus.textContent = 'Não foi possível carregar o catálogo. Abra o site por um servidor local ou hospedagem.';
+    }
 }
 
 filtroBotoes.forEach(botao => {
     botao.addEventListener('click', () => selecionarCategoria(botao.dataset.categoria, true));
 });
 
-campoBusca?.addEventListener('input', aplicarFiltros);
-botaoBusca?.addEventListener('click', aplicarFiltros);
+campoBusca?.addEventListener('input', () => {
+    quantidadeVisivel = tamanhoLote;
+    renderizarProdutos();
+});
+botaoBusca?.addEventListener('click', () => {
+    quantidadeVisivel = tamanhoLote;
+    renderizarProdutos();
+});
+botaoCarregarMais?.addEventListener('click', () => {
+    quantidadeVisivel += tamanhoLote;
+    renderizarProdutos();
+});
 
-if (produtoCards.length) {
-    const categoriaDaUrl = new URLSearchParams(window.location.search).get('categoria');
-    selecionarCategoria(categoriaDaUrl || 'todos');
-}
+carregarCatalogo();
 
-// Mantém o formulário funcional visualmente até que um serviço de envio seja configurado.
+// ===== Formulário de contato (demonstração visual) =====
 const formularioContato = document.getElementById('formulario-contato');
 const formularioStatus = document.getElementById('formulario-status');
 

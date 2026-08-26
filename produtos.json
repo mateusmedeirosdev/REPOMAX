@@ -1,0 +1,22 @@
+[
+  { "nome": "Coxim do Motor", "codigo": "VN-001", "categoria": "vans", "imagem": "imagens/produto-placeholder.jpg" },
+  { "nome": "Bucha de Suspensão", "codigo": "PK-002", "categoria": "pickups", "imagem": "imagens/produto-placeholder.jpg" },
+  { "nome": "Amortecedor Dianteiro", "codigo": "LL-003", "categoria": "linha-leve", "imagem": "imagens/produto-placeholder.jpg" },
+  { "nome": "Batente de Suspensão", "codigo": "VN-004", "categoria": "vans", "imagem": "imagens/produto-placeholder.jpg" },
+  { "nome": "Coxim de Câmbio", "codigo": "PK-005", "categoria": "pickups", "imagem": "imagens/produto-placeholder.jpg" },
+  { "nome": "Kit Reparo de Suspensão", "codigo": "LL-006", "categoria": "linha-leve", "imagem": "imagens/produto-placeholder.jpg" },
+  { "nome": "Bandeja de Suspensão", "codigo": "VN-007", "categoria": "vans", "imagem": "imagens/produto-placeholder.jpg" },
+  { "nome": "Coxim de Cabine", "codigo": "PK-008", "categoria": "pickups", "imagem": "imagens/produto-placeholder.jpg" },
+  { "nome": "Rótula Axial", "codigo": "LL-009", "categoria": "linha-leve", "imagem": "imagens/produto-placeholder.jpg" },
+  { "nome": "Amortecedor Traseiro", "codigo": "VN-010", "categoria": "vans", "imagem": "imagens/produto-placeholder.jpg" },
+  { "nome": "Bucha de Balança", "codigo": "PK-011", "categoria": "pickups", "imagem": "imagens/produto-placeholder.jpg" },
+  { "nome": "Coxim do Câmbio", "codigo": "LL-012", "categoria": "linha-leve", "imagem": "imagens/produto-placeholder.jpg" },
+  { "nome": "Kit de Bandeja", "codigo": "VN-013", "categoria": "vans", "imagem": "imagens/produto-placeholder.jpg" },
+  { "nome": "Batente Dianteiro", "codigo": "PK-014", "categoria": "pickups", "imagem": "imagens/produto-placeholder.jpg" },
+  { "nome": "Rótula de Direção", "codigo": "LL-015", "categoria": "linha-leve", "imagem": "imagens/produto-placeholder.jpg" },
+  { "nome": "Coxim Dianteiro", "codigo": "VN-016", "categoria": "vans", "imagem": "imagens/produto-placeholder.jpg" },
+  { "nome": "Bucha da Barra Estabilizadora", "codigo": "PK-017", "categoria": "pickups", "imagem": "imagens/produto-placeholder.jpg" },
+  { "nome": "Amortecedor Traseiro", "codigo": "LL-018", "categoria": "linha-leve", "imagem": "imagens/produto-placeholder.jpg" },
+  { "nome": "Kit de Coxins", "codigo": "VN-019", "categoria": "vans", "imagem": "imagens/produto-placeholder.jpg" },
+  { "nome": "Bandeja Inferior", "codigo": "PK-020", "categoria": "pickups", "imagem": "imagens/produto-placeholder.jpg" }
+]

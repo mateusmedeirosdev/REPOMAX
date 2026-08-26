@@ -839,6 +839,38 @@ body {
     padding: 40px 0;
 }
 
+.produtos-status {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    color: #667085;
+    font-size: 13px;
+    padding: 24px 0 16px;
+}
+
+.carregar-mais-container {
+    display: flex;
+    justify-content: center;
+}
+
+.botao-carregar-mais {
+    background-color: #010F22;
+    border: 2px solid #010F22;
+    color: #fff;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    padding: 13px 24px;
+    transition: 0.25s;
+}
+
+.botao-carregar-mais:hover {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: #010F22;
+}
+
 /*  Página de Contato */
 body.pagina-contato-body { 
     min-height: 100vh; 
