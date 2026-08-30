@@ -1,7 +1,22 @@
 // ===== Menu de categorias =====
 const dropdown = document.querySelector('.dropdown');
 const categorias = document.querySelector('.categorias');
+const menuMobile = document.querySelector('.menu-mobile');
+const navLinks = document.querySelector('.nav-links');
+const dropdownToggle = document.querySelector('.dropdown-toggle');
 let hideTimeout;
+
+menuMobile?.addEventListener('click', () => {
+    const menuAberto = navLinks.classList.toggle('aberto');
+    menuMobile.setAttribute('aria-expanded', String(menuAberto));
+    menuMobile.setAttribute('aria-label', menuAberto ? 'Fechar menu' : 'Abrir menu');
+});
+
+dropdownToggle?.addEventListener('click', evento => {
+    if (!window.matchMedia('(max-width: 780px)').matches) return;
+    evento.preventDefault();
+    dropdown.classList.toggle('aberto');
+});
 
 if (dropdown && categorias) {
     dropdown.addEventListener('mouseenter', () => {
@@ -17,10 +32,21 @@ if (dropdown && categorias) {
 
 // ===== Carrossel do Hero =====
 let currentSlide = 0;
-const heroSlides = document.querySelectorAll('.hero .slide');
 const heroCarrossel = document.querySelector('.hero .carrossel');
+const heroSlides = heroCarrossel?.querySelectorAll('.slide') || [];
 const totalHeroSlides = heroSlides.length;
 let autoplayHero;
+let heroEmMovimento = false;
+
+if (heroCarrossel && totalHeroSlides > 1) {
+    heroCarrossel.appendChild(heroSlides[0].cloneNode(true));
+    heroCarrossel.insertBefore(heroSlides[totalHeroSlides - 1].cloneNode(true), heroCarrossel.firstChild);
+    currentSlide = 1;
+    heroCarrossel.style.transition = 'none';
+    heroCarrossel.style.transform = `translateX(-${currentSlide * 100}%)`;
+    void heroCarrossel.offsetWidth;
+    heroCarrossel.style.transition = '';
+}
 
 function irParaSlideHero(index) {
     if (!heroCarrossel || !totalHeroSlides) return;
@@ -28,18 +54,39 @@ function irParaSlideHero(index) {
     heroCarrossel.style.transform = `translateX(-${index * 100}%)`;
 }
 
+function reposicionarHero(index) {
+    if (!heroCarrossel) return;
+    heroCarrossel.style.transition = 'none';
+    irParaSlideHero(index);
+    heroCarrossel.getBoundingClientRect();
+    heroCarrossel.style.transition = '';
+}
+
 function mudarSlideHero(direcao) {
-    if (!totalHeroSlides) return;
-    currentSlide = (currentSlide + direcao + totalHeroSlides) % totalHeroSlides;
-    irParaSlideHero(currentSlide);
+    if (!totalHeroSlides || heroEmMovimento) return;
+    heroEmMovimento = true;
+    irParaSlideHero(currentSlide + direcao);
     clearInterval(autoplayHero);
     iniciarAutoplayHero();
 }
 
+heroCarrossel?.addEventListener('transitionend', evento => {
+    if (evento.propertyName !== 'transform' || totalHeroSlides < 2) return;
+
+    if (currentSlide === 0) {
+        reposicionarHero(totalHeroSlides);
+    } else if (currentSlide >= totalHeroSlides + 1) {
+        reposicionarHero(1);
+    }
+
+    heroEmMovimento = false;
+});
+
 function iniciarAutoplayHero() {
     autoplayHero = setInterval(() => {
-        currentSlide = (currentSlide + 1) % totalHeroSlides;
-        irParaSlideHero(currentSlide);
+        if (heroEmMovimento) return;
+        heroEmMovimento = true;
+        irParaSlideHero(currentSlide + 1);
     }, 10000);
 }
 
@@ -48,24 +95,73 @@ if (totalHeroSlides) iniciarAutoplayHero();
 // ===== Carrossel de lançamentos =====
 const containerLancamentos = document.querySelector('.carrossel-container');
 const itensVisiveis = 4;
+let larguraGrupoLancamentos = 0;
+let normalizacaoLancamentos;
+let lancamentosEmMovimento = false;
+
+if (containerLancamentos) {
+    const itensOriginais = [...containerLancamentos.querySelectorAll('.item-lancamento')];
+    const estiloContainer = window.getComputedStyle(containerLancamentos);
+    const gapLancamentos = parseFloat(estiloContainer.columnGap || estiloContainer.gap || '0');
+
+    itensOriginais.forEach(item => containerLancamentos.appendChild(item.cloneNode(true)));
+    itensOriginais.slice().reverse().forEach(item => {
+        containerLancamentos.insertBefore(item.cloneNode(true), containerLancamentos.firstChild);
+    });
+
+    larguraGrupoLancamentos = itensOriginais.reduce((largura, item) => largura + item.offsetWidth, 0)
+        + gapLancamentos * itensOriginais.length;
+    containerLancamentos.style.scrollBehavior = 'auto';
+    containerLancamentos.scrollLeft = larguraGrupoLancamentos;
+    containerLancamentos.style.scrollBehavior = '';
+}
+
+function normalizarLancamentos() {
+    if (!containerLancamentos || !larguraGrupoLancamentos) return;
+
+    const inicioGrupoOriginal = larguraGrupoLancamentos;
+    const fimGrupoOriginal = inicioGrupoOriginal * 2;
+    const margem = 10;
+    let novaPosicao = null;
+
+    if (containerLancamentos.scrollLeft >= fimGrupoOriginal - margem) {
+        novaPosicao = containerLancamentos.scrollLeft - larguraGrupoLancamentos;
+    } else if (containerLancamentos.scrollLeft <= inicioGrupoOriginal - margem) {
+        novaPosicao = containerLancamentos.scrollLeft + larguraGrupoLancamentos;
+    }
+
+    if (novaPosicao === null) return;
+    containerLancamentos.style.scrollBehavior = 'auto';
+    containerLancamentos.scrollLeft = novaPosicao;
+    void containerLancamentos.offsetWidth;
+    containerLancamentos.style.scrollBehavior = '';
+}
+
+function agendarNormalizacaoLancamentos() {
+    clearTimeout(normalizacaoLancamentos);
+    normalizacaoLancamentos = setTimeout(() => {
+        normalizarLancamentos();
+        lancamentosEmMovimento = false;
+    }, 800);
+}
+
+containerLancamentos?.addEventListener('scrollend', () => {
+    clearTimeout(normalizacaoLancamentos);
+    normalizarLancamentos();
+    lancamentosEmMovimento = false;
+});
+containerLancamentos?.addEventListener('scroll', agendarNormalizacaoLancamentos);
 
 function moverCarrossel(direcao) {
-    if (!containerLancamentos) return;
+    if (!containerLancamentos || lancamentosEmMovimento) return;
     const primeiroItem = containerLancamentos.querySelector('.item-lancamento');
     if (!primeiroItem) return;
 
     const estiloContainer = window.getComputedStyle(containerLancamentos);
     const gap = parseFloat(estiloContainer.columnGap || estiloContainer.gap || '0');
     const scrollStep = (primeiroItem.offsetWidth + gap) * itensVisiveis;
-    const maxScrollLeft = containerLancamentos.scrollWidth - containerLancamentos.clientWidth;
-
-    if (direcao > 0 && containerLancamentos.scrollLeft >= maxScrollLeft - 10) {
-        containerLancamentos.scrollTo({ left: 0, behavior: 'smooth' });
-    } else if (direcao < 0 && containerLancamentos.scrollLeft <= 10) {
-        containerLancamentos.scrollTo({ left: maxScrollLeft, behavior: 'smooth' });
-    } else {
-        containerLancamentos.scrollBy({ left: direcao * scrollStep, behavior: 'smooth' });
-    }
+    lancamentosEmMovimento = true;
+    containerLancamentos.scrollBy({ left: direcao * scrollStep, behavior: 'smooth' });
 }
 
 if (containerLancamentos) setInterval(() => moverCarrossel(1), 5000);

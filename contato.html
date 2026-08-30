@@ -14,12 +14,12 @@
     <header id="header">
         <nav>
             <a href="index.html" class="logo-link"><img class="logo" src="imagens/repomax.png" alt="Logo da REPOMAX"></a>
-            <div class="nav-links">
+            <div class="nav-links" id="menu-principal">
                 <a href="index.html">INÍCIO</a>
                 <a href="produtos.html">PRODUTOS</a>
                 <a href="#">CATÁLOGO</a>
                 <div class="dropdown">
-                    <a href="#">LINHAS</a>
+                    <a href="#linhas" class="dropdown-toggle">LINHAS</a>
                     <div class="dropdown-menu">
                         <a href="produtos.html?categoria=vans#produtos" class="dropdown-item vans"><span>Vans</span></a>
                         <a href="produtos.html?categoria=pickups#produtos" class="dropdown-item pickups"><span>Pick-ups</span></a>
@@ -28,6 +28,9 @@
                 </div>
                 <a href="contato.html" aria-current="page">CONTATO</a>
             </div>
+            <button class="menu-mobile" type="button" aria-label="Abrir menu" aria-controls="menu-principal" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
         </nav>
     </header>
 

@@ -19,13 +19,13 @@
                 <img class="logo" src="imagens/repomax.png" alt="Logo da REPOMAX">
             </a>
  
-           <div class="nav-links">
+           <div class="nav-links" id="menu-principal">
                 <a href="#">INÍCIO</a>
                 <a href="produtos.html">PRODUTOS</a>
                 <a href="#">CATÁLOGO</a>
 
                 <div class="dropdown">
-                    <a href="#">LINHAS</a>
+                    <a href="#linhas" class="dropdown-toggle">LINHAS</a>
                     <div class="dropdown-menu">
                         <a href="produtos.html?categoria=vans#produtos" class="dropdown-item vans"><span>Vans</span></a>
                         <a href="produtos.html?categoria=pickups#produtos" class="dropdown-item pickups"><span>Pick-ups</span></a>
@@ -35,6 +35,9 @@
  
                 <a href="contato.html">CONTATO</a>
             </div>
+            <button class="menu-mobile" type="button" aria-label="Abrir menu" aria-controls="menu-principal" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
         </nav>
     </header>
  
@@ -61,18 +64,21 @@
         </div>
     </a>
     </section>
- 
+
     <main>
         <section class="hero">
             <div class="carrossel">
                 <div class="slide">
-                    <img src="imagens/banner1.jpg" alt="Banner 1">
+                    <picture>
+                        <source media="(max-width: 780px)" srcset="imagens/banner1-mobile.jpg">
+                        <img src="imagens/banner1.jpg" alt="Banner 1">
+                    </picture>
                     <div class="slide-text">
                         <img src="imagens/repomax_sem_fundo.png" alt="REPOMAX" class="slide-logo">
                         <p>Soluções completas em borracha e suspensão para os veículos mais vendidos do Brasil — e para o campo que move o nosso país.</p>
                     </div>
                 </div>
-
+        
             <div class="slide">
                 <img src="imagens/banner2.jpg" alt="Banner 2">
                 <div class="slide-text slide-text-2">
@@ -84,10 +90,52 @@
                     </div>
                 </div>
             </div>
+                <div class="slide">
+                    <img src="imagens/banner3.jpg" alt="Banner 3">
+                </div>
             </div>
 
             <button class="hero-btn hero-btn-prev" onclick="mudarSlideHero(-1)">❮</button>
             <button class="hero-btn hero-btn-next" onclick="mudarSlideHero(1)">❯</button>
+        </section>
+        <section class="quem-somos" aria-labelledby="quem-somos-titulo">
+            <div class="quem-somos-container">
+                <div class="quem-somos-introducao">
+                    <span class="secao-etiqueta">Quem somos</span>
+                    <h2 id="quem-somos-titulo">Experiência que move a qualidade</h2>
+                    <p>A REPOMAX reúne profissionais com mais de 15 anos de experiência no setor automotivo multinacional. Unimos conhecimento técnico, precisão e compromisso para desenvolver componentes confiáveis e de alta performance.</p>
+                    <p class="quem-somos-destaque">A REPOMAX é a melhor escolha em peças automotivas.</p>
+                </div>
+
+                <div class="especialidades" aria-label="Especialidades da REPOMAX">
+                    <article class="especialidade-card">
+                        <span class="especialidade-numero">01</span>
+                        <h3>Adesão metal-borracha</h3>
+                        <p>Especialistas no procedimento de adesão metal-borracha, com foco em resistência, segurança e durabilidade.</p>
+                    </article>
+
+                    <article class="especialidade-card">
+                        <span class="especialidade-numero">02</span>
+                        <h3>Moldagem e injeção</h3>
+                        <p>Domínio técnico do processo de moldagem e injeção da borracha para peças precisas e consistentes.</p>
+                    </article>
+
+                    <article class="especialidade-card">
+                        <span class="especialidade-numero">03</span>
+                        <h3>Compostos de alta performance</h3>
+                        <p>Especialidade técnica no desenvolvimento de formulações e compostos de borracha de alta performance.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="excelencia-pecas" aria-labelledby="excelencia-titulo">
+            <div class="excelencia-conteudo">
+                <span class="secao-etiqueta">Qualidade em cada detalhe</span>
+                <h2 id="excelencia-titulo">Excelência em peças</h2>
+                <p>Da seleção dos materiais ao acabamento final, cada peça REPOMAX é desenvolvida com rigor técnico para entregar desempenho, durabilidade e confiança nas condições mais exigentes.</p>
+                <a href="produtos.html#produtos" class="excelencia-btn">Conheça nossos produtos</a>
+            </div>
         </section>
         
         <section class="lancamentos">
